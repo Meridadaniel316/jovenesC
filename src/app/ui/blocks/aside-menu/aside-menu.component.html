@@ -1,0 +1,91 @@
+<div class="sidebar__content sidebar__content--{{channel?.type}}"
+  [ngClass]="isOpen ? 'open' : ''">
+  <div class="logo" (click)="handleClick()">
+    <img src='assets/img/logo-rofe.png' alt="logo" id="logo_img">
+    <div class="logo_text">Jovenes Crea<b class="ti">TI</b>vos</div>
+    <i class='bx bx-menu-alt-right' id="btn"></i>
+  </div>
+
+  <div class="nav_list">
+    <ul>
+      <li (click)="navigateHome()">
+        <div class="navegationStyle">
+          <i class='bx bx-grid-alt'></i>
+          <span class="links_name">Inicio</span>
+        </div>
+        <span class="tooltip">Inicio</span>
+      </li>
+
+      <li>
+        <div class="navegationStyle">
+          <i class='bx bx-bar-chart'></i>
+          <span class="links_name">Analisis</span>
+        </div>
+        <span class="tooltip">Analisis</span>
+      </li>
+
+      <li>
+        <div class="navegationStyle">
+          <i class='bx bx-chat'></i>
+          <span class="links_name Messages">Mensajes</span>
+        </div>
+        <span class="tooltip">Mensajes</span>
+      </li>
+
+      <li>
+        <div class="navegationStyle">
+          <i class='bx bx-folder'></i>
+          <span class="links_name">Archvos</span>
+        </div>
+        <span class="tooltip">Archvos</span>
+      </li>
+
+      <li (click)="navigateProfile()">
+        <div class="navegationStyle">
+          <i class='bx bxs-bot'></i>
+          <span class="links_name">Configuracion</span>
+        </div>
+        <span class="tooltip">Configuracion</span>
+      </li>
+    </ul>
+    <div class="info">
+      <div class="infoNavigate" (click)="navigateProfile()">
+        <div class="current-user__profile">
+          <figure class="current-user__image">
+            <mr-image [image]="currentUser?.image?.url" [rounded]="'circle'"></mr-image>
+          </figure>
+          <mr-text class="current-user__text" [size]="'micro'" [weight]="'bold'"
+            [text]="'Perfil'"></mr-text>
+        </div>
+        <div class="table">
+          <div class="table_text">
+            <p> <span>{{currentUser?.firstName +' '+ currentUser?.lastName}}</span>
+              <br> {{currentUser?.education}}</p>
+          </div>
+        </div>
+      </div>
+      <div class="tooltip">
+        <span class="name">{{currentUser?.firstName +' '+
+          currentUser?.lastName}}</span>
+        <br>
+        <span class="country">{{currentUser?.rol}}</span>
+      </div>
+    </div>
+  </div>
+  <div class="logout logout--{{channel?.type}}" (click)="handleLogout()">
+    <div class="logoutStyle">
+      <i class='bx bx-log-out'></i>
+      <span class="links_name">Cerrar sesion</span>
+    </div>
+
+    <span class="tooltip">Cerrar sesion</span>
+  </div>
+</div>
+<section class="Home_section">
+  <div class="listNavBar">
+    <mr-item-menu class="btn btn--{{channel?.type}}"
+    *ngFor="let channels of channelsFiltered"
+    [item]="channels"
+  ></mr-item-menu>
+</div>
+</section>

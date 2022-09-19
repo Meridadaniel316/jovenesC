@@ -1,0 +1,69 @@
+@use "../../_styles/index.scss" as styles;
+
+.register-content {
+  position: relative;
+  display: flex;
+
+  &__background {
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    width: 100%;
+  }
+
+  &__form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+
+  &__back {
+    position: fixed;
+    bottom: 10px;
+    left: 10px;
+    z-index: 1;
+    animation: animate 1s linear infinite;
+  
+    & .button-icon {
+      height: styles.func-toRem(4) !important;
+      width: styles.func-toRem(4) !important;
+      background-color: styles.$color-primary-color-alt !important;
+      color: styles.$color-bg-white !important;
+      font-size: styles.func-toRem(1.56);
+    }
+  }
+}
+
+@media (max-width: styles.$bkp-mobile) {
+  .register-content {
+    &__back {
+      & .button-icon {
+        height: styles.func-toRem(3) !important;
+        width: styles.func-toRem(3) !important;
+        font-size: styles.func-toRem(1.20);
+      }
+    }
+  }
+}
+
+@media (min-width: styles.$bkp-tablet) {
+  .register-content {
+    &__form {
+      min-height: 100vh;
+    }
+  }
+}
+
+@keyframes animate {
+  0% {
+    transform: scale(1);
+  }
+  60% {
+    transform: scale(0.8);
+  }
+  100% {
+    transform: scale(1);
+  }
+}

@@ -1,0 +1,136 @@
+<div class="notices-content">
+  <mr-channels-background
+    class="notices-content__background"
+    [bannerImage]="channel?.banner?.url"
+  ></mr-channels-background>
+
+  <div class="notices-content__info">
+    <figure class="notices-content__image">
+      <mr-image [image]="channel?.icon?.url" [alt]="'bg-notices'"></mr-image>
+    </figure>
+
+    <div class="notices-content__text">
+      <mr-text
+        [type]="'line'"
+        [text]="channel?.name"
+        [size]="'extra-large'"
+        [weight]="'bold'"
+        class="notices-content__text--large"
+      ></mr-text>
+      <mr-text [text]="channel?.description" [size]="'extra-large'"></mr-text>
+    </div>
+  </div>
+
+  <mr-card class="notices-content__notice-container">
+    <mr-notice-info [notice]="notice"></mr-notice-info>
+
+    <div
+      *ngIf="notice?.showUsersList"
+      class="notices-content__users-container"
+    >
+      <div class="notices-content__filters">
+        <mr-form-users-filter
+          [options]="cities"
+          (formUpdate)="handleCitiesFiler($event)"
+        ></mr-form-users-filter>
+        <mr-form-users-search
+          (formUpdate)="handleNameFiler($event)"
+        ></mr-form-users-search>
+      </div>
+      <ng-container>
+        <mr-table
+          [headers]="[
+            ['', '0.5rem'],
+            ['Nombre', '3rem'],
+            ['Apellido', '3rem'],
+            ['Contacto', '3rem'],
+            ['Ciudad', '4rem'],
+            ['Correo', '7rem'],
+            ['Ver perfil', '2.5rem']
+          ]"
+          [items]="getUsers || []"
+          [itemTemplateRef]="userTemplate"
+        ></mr-table>
+
+        <ng-template #userTemplate let-user="item" let-index="index">
+          <td class="notices-content-users-list__td">
+            <figure class="notices-content-users-list__image">
+              <mr-image
+                [image]="user?.image?.url"
+                [rounded]="'circle'"
+                [alt]="'icon-user'"
+              ></mr-image>
+            </figure>
+          </td>
+          <td class="notices-content-users-list__td">
+            <mr-text
+              [color]="'initial'"
+              [type]="'line'"
+              [text]="user?.firstName"
+              [size]="'base'"
+              [weight]="'regular'"
+            ></mr-text>
+          </td>
+          <td class="notices-content-users-list__td">
+            <mr-text
+              [color]="'initial'"
+              [type]="'line'"
+              [text]="user?.lastName"
+              [size]="'base'"
+              [weight]="'regular'"
+            ></mr-text>
+          </td>
+          <td class="notices-content-users-list__td">
+            <mr-text
+              [color]="'initial'"
+              [type]="'line'"
+              [text]="user?.phoneNumber"
+              [size]="'base'"
+              [weight]="'regular'"
+            ></mr-text>
+          </td>
+          <td class="notices-content-users-list__td">
+            <mr-text
+              [color]="'initial'"
+              [type]="'line'"
+              [text]="user?.location?.cityName"
+              [size]="'base'"
+              [weight]="'regular'"
+            ></mr-text>
+          </td>
+          <td class="notices-content-users-list__td">
+            <mr-text
+              [color]="'initial'"
+              [type]="'line'"
+              [text]="user?.email"
+              [size]="'base'"
+              [weight]="'regular'"
+            ></mr-text>
+          </td>
+          <td class="notices-content-users-list__td">
+            <mr-button
+              [display]="'block'"
+              [icon]="'fas fa-eye'"
+              (clicked)="navigateToUser(user.id)"
+            ></mr-button>
+          </td>
+        </ng-template>
+      </ng-container>
+
+      <mr-pagination [totalUsers]="totalPages" (changePagePaginated)="loadUsers($event)"></mr-pagination>
+    </div>
+  </mr-card>
+
+  <figure class="notices-content__wave">
+    <mr-image
+      [image]="'assets/img/wave-' + channel?.type + '.svg'"
+      [alt]="'bg-wave'"
+    ></mr-image>
+  </figure>
+
+  <mr-button-icon
+    [icon]="'arrow-left'"
+    (clicked)="handleToBack()"
+    class="notices-content__back"
+  ></mr-button-icon>
+</div>

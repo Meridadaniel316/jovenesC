@@ -1,0 +1,31 @@
+<div class="profile-current-user">
+  <mr-home-background class="profile-current-user__background"></mr-home-background>
+  <mr-card class="profile-current-user__form">
+    <ng-container>
+      <mr-form-user
+        [dataInput]="user"
+        [cities]="cities"
+        [states]="states"
+        [hobbies]="hobbies"
+        [documents]="documents"
+        [education]="education"
+        [ethnicGroups]="ethnicGroups"
+        [familyCore]="familyCore"
+        [familyIncome]="familyIncome"
+        [housingType]="housingType"
+        [maritalStatus]="maritalStatus"
+        [stratum]="stratum"
+        [sustenting]="sustenting"
+        [disclosures]="disclosures"
+        (dataOutput)="handleCreateUser($event)"
+        (formUpdate)="handleLoadCities($event)"
+        (initForm)="handleLoadCities($event)"
+      ></mr-form-user>
+    </ng-container>
+  </mr-card>
+  <mr-button-icon
+    [icon]="'home'"
+    (clicked)="handleToBack()"
+    class="profile-current-user__back"
+  ></mr-button-icon>
+</div>

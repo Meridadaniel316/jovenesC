@@ -1,0 +1,130 @@
+@use '../../_styles/index.scss' as styles;
+
+.home-content {
+  min-height: 100vh;
+  padding-top: styles.$box-pad-home-content;
+  display: flex;
+  flex-direction: column;
+  overflow-x: hidden;
+
+  &__background {
+    position: absolute;
+    z-index: -1;
+    top: 0;
+    left: 0;
+    width: 100%;
+  }
+
+  &__channels {
+    display: grid;
+    gap: styles.$box-pad-base;
+  }
+
+  &__channel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    transition: styles.$animation-ease;
+
+    &:hover {
+      transform: translateY(-5px);
+    }
+
+    &--red {
+      .text--initial {
+        color: styles.$color-status-info-dark !important;
+      }
+    }
+
+    &--oportunidades {
+      .text--initial {
+        color: styles.$color-status-success-dark !important;
+      }
+    }
+
+    &--formacion {
+      .text--initial {
+        color: styles.$color-status-warning-dark !important;
+      }
+    }
+
+    &--emprendimiento {
+      .text--initial {
+        color: styles.$color-primary-color !important;
+      }
+    }
+  }
+
+  &__logo {
+    height: styles.$box-hht-home-content-logo
+  }
+
+  &__description,
+  &__welcome {
+    @include styles.font-extra-large;
+    margin: 0 auto;
+    width: 85%;
+    text-align: center;
+    padding: styles.$box-pad-base styles.$box-pad-none;
+
+    p {
+      color: styles.$color-primary-color !important;
+    }
+  }
+
+  &__welcome {
+    position: fixed;
+    top: -15px;
+    left: styles.func-toRem(4.375);
+    width: auto;
+    text-align: center;
+    padding: styles.$box-pad-base styles.$box-pad-none;
+    visibility: hidden;
+    opacity: 0;
+    z-index: styles.$box-z-13;
+
+    .card {
+      background: transparent !important;
+      box-shadow: none !important;
+    }
+
+    .text{
+      color: styles.$color-bg-white !important;
+    }
+  }
+}
+
+@media (min-width: styles.$bkp-tablet) {
+  .home-content {
+    &__channels {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 90%;
+      margin: 0 auto;
+    }
+
+    &__description {
+      width: 60%;
+    }
+
+    &__logo {
+      height: styles.$box-hht-home-content-logo-tbl
+    }
+
+    &__welcome {
+      visibility: visible;
+      opacity: 1;
+    }
+  }
+}
+
+@media (min-width: styles.$bkp-desktop) {
+  .home-content {
+    &__logo {
+      height: styles.$box-hht-home-content-logo
+    }
+  }
+}

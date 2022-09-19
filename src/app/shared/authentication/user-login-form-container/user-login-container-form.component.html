@@ -1,0 +1,10 @@
+<ng-container *ngIf="{
+  currentUser: (currentUser$ | async),
+  formNotification: (formNotification$ | async)
+} as data">
+  <mr-form-user-login
+    [currentUser]="data.currentUser"
+    [formNotification]="data.formNotification"
+    (dataOutput)="handleLogin($event)"
+  ></mr-form-user-login>
+</ng-container>

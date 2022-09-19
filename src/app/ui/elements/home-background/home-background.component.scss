@@ -1,0 +1,21 @@
+@use '../../_styles/index.scss' as styles;
+
+.home-content {
+  &__bg {
+    position: relative;
+  }
+
+  &__image-top {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 50%;
+  }
+
+  &__image-bottom {
+    position: fixed;
+    bottom: -5px;
+    right: 0;
+    width: 50%;
+  }
+}

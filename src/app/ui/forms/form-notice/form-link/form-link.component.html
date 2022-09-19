@@ -1,0 +1,22 @@
+<form class="form-link" [formGroup]="form.formGroup">
+  <fieldset class="form-link__section">
+    <mr-sub-form-input 
+      [type]="'input'"
+      [label]="'Nombre'"
+      [icon]="'fas fa-signature'"
+      [formControlName]="form.formControlNames.name"
+    ></mr-sub-form-input>
+
+    <mr-sub-form-input 
+      [type]="'input'"
+      [label]="'Enlace'"
+      [icon]="'fas fa-link'"
+      [formControlName]="form.formControlNames.url"
+    ></mr-sub-form-input>
+
+    <mr-button-icon
+      [icon]="'trash'"
+      (clicked)="handleDeleteControl()"
+    ></mr-button-icon>
+  </fieldset>
+</form>

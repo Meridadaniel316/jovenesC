@@ -1,0 +1,57 @@
+@use '../../_styles/index.scss' as styles;
+
+.form-user {
+  display: grid;
+  gap: styles.$box-pad-base;
+  align-items: center;
+
+  &__section {
+    gap: styles.$box-pad-base;
+    display: grid;
+    min-width: 0;
+    padding: 0;
+    margin: 0;
+    border: 0;
+  }
+
+  &__disclosure {
+    gap: styles.$box-pad-base;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__terms {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+
+    & a { 
+      @include styles.font-small;
+      display: inline;
+      text-decoration: none;
+      color: styles.$color-primary-color;
+    }
+  }
+
+  &__files {
+    display: grid;
+    row-gap: styles.$box-pad-base;
+  }
+}
+
+@media (max-width: styles.$bkp-mobile) {
+  .form-user {
+    &__button {
+      display: block;
+      margin: 0 auto;
+    }
+  }
+}
+
+@media (min-width: styles.$bkp-tablet) {
+  .form-user {
+    &__section{
+      grid-template-columns: repeat(2, styles.$box-fr-base);
+    }
+  }
+}

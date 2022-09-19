@@ -1,0 +1,15 @@
+<div *ngIf="isVisible" class="floating-card">
+  <div class="floating-card__top">
+    <mr-button-icon
+      class="floating-card__close"
+      [icon]="'times'"
+      (click)="handleClick()"
+    ></mr-button-icon>
+    <div class="floating-card__header">
+      <ng-content select="[header]"></ng-content>
+    </div>
+  </div>
+  <div class="floating-card__content">
+    <ng-content></ng-content>
+  </div>
+</div>

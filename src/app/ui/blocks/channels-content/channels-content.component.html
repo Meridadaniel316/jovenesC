@@ -1,0 +1,43 @@
+<div class="channels-content">
+  <mr-channels-background
+    class="channels-content__background"
+    [bannerImage]="channel?.banner?.url"
+  ></mr-channels-background>
+
+  <div class="channels-content__info">
+    <figure class="channels-content__image">
+      <mr-image [image]="channel?.icon?.url" [alt]="'bg-channels'"></mr-image>
+    </figure>
+
+    <div class="channels-content__text">
+      <mr-text
+        [type]="'line'"
+        [text]="channel?.name"
+        [size]="'extra-large'"
+        [weight]="'bold'"
+        class="channels-content__text--large"
+      ></mr-text>
+      <mr-text [text]="channel?.description" [size]="'extra-large'"></mr-text>
+    </div>
+  </div>
+
+  <mr-card
+    class="channels-content__notices-container"
+    *ngIf="notices && notices.length >= 1"
+  >
+    <ng-container>
+      <div class="channels-content__notices">
+        <mr-notice
+          *ngFor="let notice of notices"
+          [notice]="notice"
+        ></mr-notice>
+      </div>
+    </ng-container>
+  </mr-card>
+
+  <mr-button-icon
+    [icon]="'arrow-left'"
+    (clicked)="handleToBack()"
+    class="channels-content__back channels-content__back--{{ notices?.[0]?.channel }}"
+  ></mr-button-icon>
+</div>

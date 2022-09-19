@@ -1,0 +1,37 @@
+<div class="request">
+  <i class="request__icon fas fa-trash" (click)="modalDeleteRef.toggle()"></i>
+  <div class="request__title">
+    <mr-text [text]="request.title | capitalize" [weight]="'bold'"></mr-text>
+    <i class="fas fa-clock"></i>
+    <mr-text [text]="request.creationDate | date" [weight]="'bold'"></mr-text>
+  </div>
+  <div class="request__fields">
+    <div class="request__field" *ngFor="let field of request?.fields">
+      <ng-container *ngIf="field?.type !== 'image'">
+        <i class="fas fa-info-circle fa-s"></i>
+        <mr-text [text]="field.label" [weight]="'regular'"></mr-text> : <mr-text [text]="field.value"></mr-text>
+      </ng-container>
+      <ng-container *ngIf="field?.type === 'image'">
+        <figure class="request__image">
+          <mr-image [image]="field?.image?.url" [rounded]="'medium'"></mr-image>
+        </figure>
+      </ng-container>
+    </div>
+  </div>
+</div>
+
+<mr-modal #modalDeleteRef [auto]="true">
+  <ng-container>
+    <mr-text
+      class="modal__label"
+      [text]="'¿Estás seguro de que deseas eliminar esta solicitud?'"
+      [weight]="'bold'"
+      [size]="'medium'"
+    ></mr-text>
+    <mr-button
+      class="admin-notices-list__button"
+      [label]="'Eliminar'"
+      (clicked)="modalDeleteRef.toggle(); handleDeleteRequest()"
+    ></mr-button>
+  </ng-container>
+</mr-modal>

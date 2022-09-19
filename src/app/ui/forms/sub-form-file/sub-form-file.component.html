@@ -1,0 +1,33 @@
+<div class="sub-form-file" [formGroup]="form.formGroup">
+  <label
+    class="sub-form-file__label"
+    [for]="uniqueId"
+  >
+    <i  class="sub-form-file__icon fas fa-upload"></i>
+    <div class="sub-form-file__text">
+      <mr-text
+        class="sub-form-file__button"
+        [text]="label"
+        [size]="'small'"
+        [weight]="'bold'"
+        (click)="inputRef.click(); toggleLabelFocus(true)"
+      ></mr-text>
+      <mr-text [text]="form.formGroup.value.file?.name"></mr-text>
+      <input 
+        #inputRef
+        class="sub-form-file__handle" 
+        [type]="'file'"
+        [value]=""
+        (input)="handleChange($event)"
+      >
+    </div>
+  </label>
+
+  <figure *ngIf="isImage" class="sub-form-file__image">
+    <mr-image
+      [image]="(fileSelected || form.formGroup.controls.url.value) | noimage"
+      [alt]="fileSelected || 'file selected'"
+      [rounded]="'medium'"
+    ></mr-image>
+  </figure>
+</div>

@@ -1,0 +1,58 @@
+@use './break-points' as bkp;
+@use './functions' as func;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;400&display=swap');
+
+$weight-bold: 700;
+$weight-regular: 400;
+$weight-light: 300;
+
+@mixin _font {
+  font-weight: $weight-regular;
+  font-family: 'Poppins', sans-serif;
+}
+
+@mixin extra-large {
+  @include _font;
+  font-size: func.toRem(1.15);
+  line-height: func.toRem(2);
+
+  @media (min-width: bkp.$desktop) {
+    font-size: func.toRem(1.5);
+    line-height: func.toRem(2);
+  }
+}
+
+@mixin large {
+  @include _font;
+  font-size: func.toRem(1.125);
+  line-height: func.toRem(1.125);
+
+  @media (min-width: bkp.$desktop) {
+    font-size: func.toRem(1.25);
+    line-height: func.toRem(1.25);
+  }
+}
+
+@mixin medium {
+  @include _font;
+  font-size: func.toRem(1.05);
+
+  @media (min-width: bkp.$desktop) {
+    font-size: func.toRem(1.15);
+  }
+}
+
+@mixin base {
+  @include _font;
+  font-size: func.toRem(0.95);
+}
+
+@mixin small {
+  @include _font;
+  font-size: func.toRem(0.85);
+}
+
+@mixin micro {
+  @include _font;
+  font-size: func.toRem(0.75);
+}

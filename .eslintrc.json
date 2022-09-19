@@ -1,0 +1,46 @@
+{
+  "env": {
+    "browser": true,
+    "es2021": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:angular/johnpapa"
+  ],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "sourceType": "module"
+  },
+  "plugins": ["@typescript-eslint"],
+  "rules": {
+    "indent": ["error", 2],
+    "quotes": ["error", "single"],
+    "semi": ["error", "always"],
+    "@typescript-eslint/no-unused-vars": ["off"],
+    "@typescript-eslint/no-explicit-any": ["off"],
+    "max-len": [
+      "error",
+      {
+        "code": 140,
+        "ignorePattern": "^import\\s.+\\sfrom\\s.+;$",
+        "ignoreUrls": true,
+        "ignoreTemplateLiterals": true
+      }
+    ],
+    "no-multiple-empty-lines": "error",
+    "arrow-parens": [
+      "error",
+      "always"
+    ],
+    "comma-dangle": [
+      "error",
+      "always-multiline"
+    ],
+    "eol-last": [
+      "error",
+      "always"
+    ]
+  }
+}

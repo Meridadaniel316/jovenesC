@@ -1,0 +1,17 @@
+@use '../../_styles/index.scss' as styles;
+
+.tab-buttons {
+  display: grid;
+  gap: styles.$box-pad-base;
+  grid-template-columns: repeat(2, styles.$box-fr-base);
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+
+@media (min-width: styles.$bkp-tablet) {
+  .tab-buttons {
+    grid-template-columns: repeat(4, styles.$box-fr-base);
+  }
+}

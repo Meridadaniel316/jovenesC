@@ -1,0 +1,12 @@
+<ng-container *ngIf="{
+  currentUser: (currentUser$ | async) ,
+  channels: (channels$ | async),
+  channel: (channel$ | async)
+} as data">
+  <mr-navbar
+    [currentUser]="data.currentUser"
+    [channels]="data.channels"
+    [channel]="data.channel"
+    (clickedLogout)="handleLogout()"
+  ></mr-navbar>
+</ng-container>

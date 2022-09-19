@@ -1,0 +1,74 @@
+@use "../../_styles/index.scss" as styles;
+
+.table {
+  &__container {
+    &--tableless {
+      background-color: transparent;
+      border-radius: 0;
+    }
+  }
+
+  &__scroll {
+    overflow-x: auto;
+  }
+
+  &__table {
+    width: 100%;
+  }
+
+  &__trh {
+    text-align: center;
+  }
+
+  &__th {
+    padding: styles.func-toRem(0.6);
+    font-size: styles.func-toRem(1.12);
+  }
+
+  &__tbody {
+    td {
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+    }
+  }
+
+  &__tr {
+    transition: 0.2s ease-in;
+
+    &:nth-child(even) {
+      background: styles.$color-primary-color-light;
+    }
+    
+    &:hover {
+      background: styles.$color-primary-color-light;
+    }
+
+    &--tableless {
+      border-top: 0;
+      border-left: 0;
+    }
+  }
+
+  &__tbody {
+    & td {
+      text-overflow: ellipsis;
+      overflow: hidden;
+      white-space: nowrap;
+      text-align: center;
+    }
+  }
+
+  &__notfound {
+    padding: styles.func-toRem(0.6);
+    text-align: center;
+  }
+}
+
+@media (min-width: styles.$bkp-desktop) {
+  .table {
+    &__table {
+      table-layout: fixed;
+    }
+  }
+}

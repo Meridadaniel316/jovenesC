@@ -1,0 +1,23 @@
+@use '../../_styles/index.scss' as styles;
+
+@include styles.form-input($name: 'sub-form-file');
+
+.sub-form-file {
+  display: grid;
+  grid-template-columns: auto min-content;
+  gap: styles.$box-pad-base;
+
+  &__handle {
+    display: none;
+  }
+
+  &__button {
+    display: block;
+    cursor: pointer;
+  }
+
+  &__image {
+    width: styles.func-toRem(2.85);
+    height: styles.func-toRem(2.85);
+  }
+}

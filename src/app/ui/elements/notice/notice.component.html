@@ -1,0 +1,57 @@
+<div *ngIf="notice?.isLink">
+  <a [href]="notice?.url" target="_blank">
+    <div class="channels-content-container__notice">
+      <figure
+        class="channels-content-container__image channels-content-container__image--shadow channels-content-container__image--shadow--{{
+          notice?.channel
+        }}"
+      >
+        <mr-image
+          [image]="notice?.icon?.url"
+          [rounded]="'circle'"
+          [alt]="'notice-item'"
+        ></mr-image>
+      </figure>
+      <div class="channels-content-container__notice-info">
+        <mr-text
+          [text]="notice?.title"
+          [size]="'extra-large'"
+          [weight]="'bold'"
+        ></mr-text>
+        <mr-text
+          [text]="notice?.description"
+          [size]="'medium'"
+          [weight]="'light'"
+        ></mr-text>
+      </div>
+    </div>
+  </a>
+</div>
+
+<div *ngIf="!notice?.isLink" (click)="navigateToNotice()">
+  <div class="channels-content-container__notice">
+    <figure
+      class="channels-content-container__image channels-content-container__image--shadow channels-content-container__image--shadow--{{
+        notice.channel
+      }}"
+    >
+      <mr-image
+        [image]="notice?.icon?.url"
+        [rounded]="'circle'"
+        [alt]="'notice-item'"
+      ></mr-image>
+    </figure>
+    <div class="channels-content-container__notice-info">
+      <mr-text
+        [text]="notice?.title"
+        [size]="'extra-large'"
+        [weight]="'bold'"
+      ></mr-text>
+      <mr-text
+        [text]="notice?.description"
+        [size]="'medium'"
+        [weight]="'light'"
+      ></mr-text>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,26 @@
+  <fieldset class="form-field" [formGroup]="form.formGroup">
+    <div class="form-field__section">
+      <mr-sub-form-input 
+        [type]="'text'"
+        [label]="'Nombre del campo'"
+        [icon]="'fas fa-signature'"
+        [formControlName]="form.formControlNames.label"
+      ></mr-sub-form-input>
+
+      <mr-sub-form-select 
+        [label]="'Tipo'"
+        [options]="options"
+        [icon]="'fas fa-font'"
+        [formControlName]="form.formControlNames.type"
+      ></mr-sub-form-select>
+
+      <mr-button-icon
+        [icon]="'trash'"
+        (clicked)="handleDeleteControl()"
+      ></mr-button-icon>
+    </div>
+
+    <mr-form-options
+      [formControlName]="form.formControlNames.options"
+    ></mr-form-options>
+  </fieldset>

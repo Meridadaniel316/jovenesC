@@ -1,0 +1,73 @@
+@use "../../_styles/index.scss" as styles;
+
+a {
+  text-decoration: none !important;
+}
+
+.channels-content-container {
+  &__notice {
+    display: grid;
+    grid-template-columns: styles.func-toRem(5) auto;
+    gap: styles.func-toRem(1.7);
+    cursor: pointer;
+
+    .text {
+      color: styles.$color-typo-base !important;
+    }
+  }
+
+  &__image {
+    position: relative;
+    width: styles.func-toRem(5) !important;
+    height: styles.func-toRem(5) !important;
+    object-fit: cover;
+
+    &--shadow {
+      position: relative;
+      width: styles.func-toRem(7);
+      background: styles.$color-primary-color-light;
+      border-radius: 50%;
+      padding: styles.$box-pad-half;
+
+      &--network {
+        background-color: styles.$color-status-info-dark;
+      }
+
+      &--business {
+        background-color: styles.$color-status-error-dark;
+      }
+
+      &--opportunities {
+        background-color: styles.$color-status-success-dark;
+      }
+
+      &--training {
+        background-color: styles.$color-status-warning-dark;
+      }
+    }
+  }
+}
+
+@media (max-width: styles.$bkp-tablet) {
+  .channels-content-container {
+    &__notice {
+      grid-template-columns: auto;
+
+      .text {
+        text-align: center !important;
+      }
+    }
+
+    &__image {
+      margin: 0 auto;
+    }
+  }
+}
+
+@media (max-width: styles.$bkp-desktop) {
+  .channels-content-container {
+    &__notice {
+      gap: styles.func-toRem(1.25);
+    }
+  }
+}

@@ -1,0 +1,77 @@
+<form class="form-notice" [formGroup]="form.formGroup">
+  <fieldset class="form-notice__section">
+    <mr-sub-form-input 
+      [type]="'input'"
+      [label]="'Título'"
+      [icon]="'fas fa-file-signature'"
+      [formControlName]="form.formControlNames.title"
+    ></mr-sub-form-input>
+
+    <mr-sub-form-input 
+      [type]="'number'"
+      [label]="'Orden'"
+      [icon]="'fas fa-sort'"
+      [formControlName]="form.formControlNames.order"
+    ></mr-sub-form-input>
+  </fieldset>
+
+  <fieldset class="form-notice__description">
+    <mr-sub-form-input 
+      [type]="'input'"
+      [label]="'Enlace'"
+      [icon]="'fas fa-link'"
+      [formControlName]="form.formControlNames.url"
+    ></mr-sub-form-input>
+
+    <mr-sub-form-select
+      [placeholder]="'Seleccione formulario'"
+      [options]="forms"
+      [label]="'Formulario'"
+      [icon]="'fas fa-sort'"
+      [formControlName]="form.formControlNames.formId"
+    ></mr-sub-form-select>
+  </fieldset>
+
+  <fieldset class="form-notice__description">
+    <mr-sub-form-select
+      [placeholder]="'Seleccione un canal'"
+      [options]="channelOptions"
+      [label]="'Canal'"
+      [icon]="'fas fa-sort'"
+      [formControlName]="form.formControlNames.channel"
+    ></mr-sub-form-select>
+  </fieldset>
+
+  <fieldset class="form-notice__description">
+    <mr-sub-form-textarea 
+      [text]="'Descripción'"
+      [formControlName]="form.formControlNames.description"
+    ></mr-sub-form-textarea>
+  </fieldset>
+
+  <fieldset class="form-notice__description">
+    <mr-form-links 
+      [formControlName]="form.formControlNames.links"
+    ></mr-form-links>
+  </fieldset>
+
+  <fieldset class="form-notice__file">
+    <mr-sub-form-file
+      [label]="'Adjuntar icono'"
+      [canResetImage]="canResetForm"
+      [formControlName]="form.formControlNames.icon"
+    ></mr-sub-form-file>
+
+    <mr-sub-form-file
+      [label]="'Adjuntar contenido'"
+      [canResetImage]="canResetForm"
+      [formControlName]="form.formControlNames.content"
+    ></mr-sub-form-file>
+  </fieldset>
+
+  <mr-button 
+    [label]="'Guardar'"
+    [isDisabled]="form.formGroup.invalid || form.formGroup.disabled"
+    (clicked)="manualSave$.next()"
+  ></mr-button>
+</form>

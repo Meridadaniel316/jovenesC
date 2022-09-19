@@ -1,0 +1,103 @@
+<mr-button
+  [display]="'inline'"
+  [icon]="'fas fa-plus'"
+  [label]="'Crear'"
+  (clicked)="modalRef.toggle()"
+></mr-button>
+<mr-table
+  [headers]="[
+    ['Titulo', '10rem'],
+    ['Asunto', '10rem'],
+    ['Plantilla', '10rem'],
+    ['Acciones', '3rem']
+  ]"
+  [items]="formRequests || []"
+  [itemTemplateRef]="userTemplate"
+></mr-table>
+
+<ng-template #userTemplate let-request="item" let-index="index">
+  <td class="admin-form-requests-list-tmpl__td">
+    <mr-text
+      [color]="'initial'"
+      [type]="'line'"
+      [text]="request?.title"
+      [size]="'base'"
+      [weight]="'regular'"
+    ></mr-text>
+  </td>
+  <td class="admin-form-requests-list-tmpl__td">
+    <mr-text
+      [color]="'initial'"
+      [type]="'line'"
+      [text]="request?.subject"
+      [size]="'base'"
+      [weight]="'regular'"
+    ></mr-text>
+  </td>
+  <td class="admin-form-requests-list-tmpl__td">
+    <mr-text
+      [color]="'initial'"
+      [type]="'line'"
+      [text]="request?.template"
+      [size]="'base'"
+      [weight]="'regular'"
+    ></mr-text>
+  </td>
+  <td class="admin-form-requests-list-tmpl__td admin-form-requests-list-tmpl__td--buttons">
+    <mr-button
+      [display]="'block'"
+      [icon]="'fas fa-pen'"
+      (clicked)="handleLoadForm(request.id); modalUpdateRef.toggle()"
+    ></mr-button>
+
+    <mr-button
+      [display]="'block'"
+      [icon]="'fas fa-trash'"
+      (clicked)="modalDeleteRef.toggle(); setFormRequestId(request.id)"
+    ></mr-button>
+  </td>
+</ng-template>
+
+<mr-modal #modalRef>
+  <ng-container>
+    <mr-form-forms-requests
+      [canResetForm]="canCloseModal"
+      [templates]="templates"
+      [channels]="channelsOptions"
+      (dataOutput)="handleCreateForm($event)"
+    ></mr-form-forms-requests>
+  </ng-container>
+</mr-modal>
+
+<mr-modal #modalUpdateRef>
+  <ng-container>
+    <mr-form-forms-requests
+      [templates]="templates"
+      [dataInput]="formToUpdate"
+      [channels]="channelsOptions"
+      [canResetForm]="canCloseModal"
+      (dataOutput)="handleUpdateForm($event)"
+    ></mr-form-forms-requests>
+  </ng-container>
+</mr-modal>
+
+<mr-modal #modalDeleteRef [auto]="true">
+  <ng-container>
+    <mr-text
+      [text]="'¿Estás seguro de que deseas eliminar este formulario?'"
+      [weight]="'bold'"
+      [size]="'medium'"
+    ></mr-text>
+    <mr-button
+      class="admin-users-list__button"
+      [label]="'Eliminar'"
+      (clicked)="modalDeleteRef.toggle(); handleDeleteForm()"
+    ></mr-button>
+  </ng-container>
+</mr-modal>
+
+<mr-button-icon
+  [icon]="'arrow-left'"
+  (clicked)="handleToBack()"
+  class="admin-form-requests__back"
+></mr-button-icon>

@@ -1,0 +1,198 @@
+@use "../../_styles/index.scss" as styles;
+
+.channels-content {
+  padding-top: styles.$box-pad-home-content;
+
+  &__background {
+    position: absolute;
+    z-index: styles.func-toNeg(1);
+    top: styles.$box-pad-none;
+    left: styles.$box-pad-none;
+    width: styles.$box-wth-block;
+  }
+
+  &__image {
+    position: relative;
+    width: styles.func-toRem(12.5);
+  }
+
+  &__info {
+    position: relative;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: styles.$box-pad-double styles.$box-pad-none styles.func-toRem(3)
+      styles.func-toRem(7.5);
+    gap: styles.$box-pad-base;
+  }
+
+  &__text {
+    .text {
+      color: styles.$color-bg-white !important;
+      text-shadow: -4px 4px 3px rgba(0, 0, 0, 0.3);
+    }
+
+    &--large {
+      .text {
+        font-size: styles.func-toRem(4) !important;
+        line-height: styles.func-toRem(4) !important;
+      }
+    }
+  }
+
+  &__users-container,
+  &__notices-container {
+    position: relative;
+
+    .card {
+      border-radius: styles.$box-rad-large styles.$box-rad-large
+        styles.$box-pad-none styles.$box-pad-none !important;
+      width: 90% !important;
+      margin: styles.$box-mrg-none auto;
+    }
+  }
+
+  &__notices {
+    display: grid;
+    grid-template-columns: repeat(2, styles.$box-fr-base);
+    padding: 0 styles.func-toRem(2);
+    gap: styles.func-toRem(3.12);
+    row-gap: styles.func-toRem(1.8);
+  }
+
+  &__back {
+    position: fixed;
+    bottom: 10px;
+    left: 10px;
+    z-index: 1;
+    animation: animate 1s linear infinite;
+
+    & .button-icon {
+      height: styles.func-toRem(4) !important;
+      width: styles.func-toRem(4) !important;
+      color: styles.$color-bg-white !important;
+      background-color: styles.$color-primary-color-alt;
+      font-size: styles.func-toRem(1.56);
+
+      &:hover {
+        background-color: styles.$color-primary-color-alt !important;
+      }
+    }
+
+    &--network {
+      & .button-icon {
+        background-color: styles.$color-status-info-dark;
+
+        &:hover {
+          background-color: styles.$color-status-info-dark !important;
+        }
+      }
+    }
+
+    &--business {
+      & .button-icon {
+        background-color: styles.$color-status-error-dark;
+
+        &:hover {
+          background-color: styles.$color-status-error-dark !important;
+        }
+      }
+    }
+
+    &--opportunities {
+      & .button-icon {
+        background-color: styles.$color-status-success-dark;
+
+        &:hover {
+          background-color: styles.$color-status-success-dark !important;
+        }
+      }
+    }
+
+    &--training {
+      & .button-icon {
+        background-color: styles.$color-status-warning-dark;
+
+        &:hover {
+          background-color: styles.$color-status-warning-dark !important;
+        }
+      }
+    }
+  }
+}
+
+@keyframes animate {
+  0% {
+    transform: scale(1);
+  }
+  60% {
+    transform: scale(0.8);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@media (max-width: styles.$bkp-mobile) {
+  .channels-content {
+    &__image {
+      width: styles.func-toRem(5) !important;
+    }
+
+    &__text {
+      &--large {
+        .text {
+          font-size: styles.func-toRem(1.7) !important;
+          line-height: styles.func-toRem(2) !important;
+        }
+      }
+    }
+
+    &__notices {
+      grid-template-columns: 1fr !important;
+    }
+
+    &__info {
+      padding: styles.func-toRem(1) styles.$box-pad-none styles.func-toRem(1)
+        styles.func-toRem(0.7) !important;
+    }
+
+    &__back {
+      & .button-icon {
+        height: styles.func-toRem(3) !important;
+        width: styles.func-toRem(3) !important;
+        font-size: styles.func-toRem(1.20);
+      }
+    }
+  }
+}
+
+@media (max-width: styles.$bkp-tablet) {
+  .channels-content {
+    &__text {
+      &--large {
+        .text {
+          font-size: styles.func-toRem(1.5) !important;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: styles.$bkp-desktop) {
+  .channels-content {
+    &__image {
+      width: styles.func-toRem(9.5);
+    }
+
+    &__info {
+      padding: styles.$box-pad-double styles.$box-pad-none styles.func-toRem(3)
+        styles.func-toRem(3);
+    }
+
+    &__notices {
+      padding: 0 styles.func-toRem(0.6);
+      gap: styles.func-toRem(1.25);
+    }
+  }
+}

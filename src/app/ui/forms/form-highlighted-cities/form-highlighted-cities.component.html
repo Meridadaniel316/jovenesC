@@ -1,0 +1,14 @@
+<form class="form-user-filter" [formGroup]="form.formGroup">
+  <mr-sub-form-location
+    [cities]="cities"
+    [states]="states"
+    [formControlName]="form.formControlNames.value"
+  ></mr-sub-form-location>
+
+  <mr-button 
+    class="form-user__button" 
+    [label]="'Guardar'"
+    [isDisabled]="form.formGroup.invalid || form.formGroup.disabled" 
+    (clicked)="manualSave$.next()"
+  ></mr-button>
+</form>

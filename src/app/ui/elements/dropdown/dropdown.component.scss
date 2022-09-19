@@ -1,0 +1,68 @@
+@use '../../_styles/index.scss' as styles;
+
+@include styles.form-input($name: 'dropdown');
+@include styles.form-floating($name: 'dropdown');
+
+.dropdown {
+  &__input {
+    height: styles.$box-hht-base;
+  }
+
+  &__caret {
+    &--reverse {
+      @include styles.animation-reverse;
+    }
+  }
+
+  &__times {
+    cursor: pointer;
+  }
+
+  &__times-circle {
+    cursor: pointer;
+    font-size: 0.75rem;
+  }
+
+  &__options {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    column-gap: styles.$box-pad-half;
+    row-gap: 3px;
+    width: 200px;
+
+    &--active {
+      position: relative;
+      height: 20px;
+      overflow: hidden;
+      z-index: 1;
+
+      &:hover {
+        overflow: visible;
+      }
+    }
+  }
+
+  &__text-option {
+    max-width: 150px;
+  }
+
+  &__option {
+    display: flex;
+    align-items: center;
+    gap: styles.$box-pad-half;
+    border-radius: styles.$box-rad-large;
+    background-color: styles.$color-primary-color;
+    width: fit-content;
+    color: styles.$color-bg-white;
+    padding: 0 0.25rem;
+
+    .text {
+      color: styles.$color-bg-white !important;
+    }
+  }
+
+  &__floating {
+    min-width: 100%;
+  }
+}

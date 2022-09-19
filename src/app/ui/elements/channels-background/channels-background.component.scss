@@ -1,0 +1,18 @@
+@use '../../_styles/index.scss' as styles;
+
+.channels-background {
+  &__bg {
+    position: relative;
+    width: 100%;
+    margin-top: 80px;
+    z-index: -2;
+  }
+}
+
+@media (max-width: styles.$bkp-mobile) {
+  .channels-background {
+    &__image {
+      height: 200px !important;
+    }
+  }
+}

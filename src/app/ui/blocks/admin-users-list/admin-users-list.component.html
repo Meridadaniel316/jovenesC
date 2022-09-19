@@ -1,0 +1,171 @@
+<div class="admin-users-list__head">
+  <mr-button
+    [display]="'inline'"
+    [icon]="'fas fa-plus'"
+    [label]="'Crear'"
+    (clicked)="modalRef.toggle()"
+  ></mr-button>
+  <mr-button
+    [display]="'inline'"
+    [icon]="'fas fa-download'"
+    [label]="'Descargar'"
+    (clicked)="handleDownloadUsers()"
+  ></mr-button>
+  <mr-form-users-search
+    (formUpdate)="handleNameFiler($event)"
+  ></mr-form-users-search>
+</div>
+<mr-table
+  [headers]="[
+    ['', '0.5rem'],
+    ['Nombre', '3rem'],
+    ['Apellido', '3rem'],
+    ['Contacto', '3rem'],
+    ['Correo', '7rem'],
+    ['Fecha de creación', '5rem'],
+    ['Acciones', '3rem']
+  ]"
+  [items]="getUsers || []"
+  [itemTemplateRef]="userTemplate"
+></mr-table>
+
+<ng-template #userTemplate let-user="item" let-index="index">
+  <td class="admin-users-list-tmpl__td">
+    <figure class="admin-users-list-tmpl__image">
+      <mr-image
+        [image]="user?.image?.url"
+        [rounded]="'circle'"
+        [alt]="'icon-user'"
+      ></mr-image>
+    </figure>
+  </td>
+  <td class="admin-users-list-tmpl__td">
+    <mr-text
+      [color]="'initial'"
+      [type]="'line'"
+      [text]="user?.firstName"
+      [size]="'base'"
+      [weight]="'regular'"
+    ></mr-text>
+  </td>
+  <td class="admin-users-list-tmpl__td">
+    <mr-text
+      [color]="'initial'"
+      [type]="'line'"
+      [text]="user?.lastName"
+      [size]="'base'"
+      [weight]="'regular'"
+    ></mr-text>
+  </td>
+  <td class="admin-users-list-tmpl__td">
+    <mr-text
+      [color]="'initial'"
+      [type]="'line'"
+      [text]="user?.phoneNumber"
+      [size]="'base'"
+      [weight]="'regular'"
+    ></mr-text>
+  </td>
+  <td class="admin-users-list-tmpl__td">
+    <mr-text
+    [color]="'initial'"
+    [type]="'line'"
+    [text]="user?.email"
+    [size]="'base'"
+    [weight]="'regular'"
+    ></mr-text>
+  </td>
+  <td class="admin-users-list-tmpl__td">
+    <mr-text
+      [color]="'initial'"
+      [type]="'line'"
+      [text]="user?.creationDate | date"
+      [size]="'base'"
+      [weight]="'regular'"
+    ></mr-text>
+  </td>
+  <td class="admin-users-list-tmpl__td admin-users-list-tmpl__td--buttons">
+    <mr-button
+      [display]="'block'"
+      [icon]="'fas fa-pen'"
+      (clicked)="handleLoadUserToUpdate(user.id); modalUpdateRef.toggle()"
+    ></mr-button>
+    <mr-button
+      [display]="'block'"
+      [icon]="'fas fa-trash'"
+      (clicked)="modalDeleteRef.toggle(); setUserId(user.id)"
+    ></mr-button>
+  </td>
+</ng-template>
+
+<mr-pagination [totalUsers]="totalPages" (changePagePaginated)="handleLoadUsers($event)"></mr-pagination>
+
+<mr-modal #modalRef>
+  <ng-container>
+    <mr-form-user
+      [hobbies]="hobbies"
+      [states]="states"
+      [cities]="cities"
+      [documents]="documents"
+      [education]="education"
+      [ethnicGroups]="ethnicGroups"
+      [familyCore]="familyCore"
+      [familyIncome]="familyIncome"
+      [housingType]="housingType"
+      [maritalStatus]="maritalStatus"
+      [stratum]="stratum"
+      [sustenting]="sustenting"
+      [canResetForm]="canCloseModal"
+      [disclosures]="disclosures"
+      [showCheckConditions]="true"
+      (dataOutput)="handleCreateUser($event)"
+      (formUpdate)="handleSelectState($event)"
+    ></mr-form-user>
+  </ng-container>
+</mr-modal>
+
+<mr-modal #modalUpdateRef>
+  <ng-container>
+    <mr-form-user
+      [dataInput]="userToUpdate"
+      [hobbies]="hobbies"
+      [states]="states"
+      [cities]="cities"
+      [documents]="documents"
+      [education]="education"
+      [ethnicGroups]="ethnicGroups"
+      [familyCore]="familyCore"
+      [familyIncome]="familyIncome"
+      [housingType]="housingType"
+      [maritalStatus]="maritalStatus"
+      [stratum]="stratum"
+      [sustenting]="sustenting"
+      [canResetForm]="canCloseModal"
+      [disclosures]="disclosures"
+      (formUpdate)="handleSelectState($event)"
+      (initForm)="handleSelectState($event)"
+      (dataOutput)="handleUpdateUser($event)"
+    ></mr-form-user>
+  </ng-container>
+</mr-modal>
+
+<mr-modal #modalDeleteRef [auto]="true">
+  <ng-container>
+    <mr-text
+      [text]="'¿Estás seguro de que deseas eliminar este usuario?'"
+      [weight]="'bold'"
+      [size]="'medium'"
+    ></mr-text>
+    <mr-button
+      class="admin-users-list__button"
+      [label]="'Eliminar'"
+      (clicked)="modalDeleteRef.toggle(); handleDeleteUser()"
+    ></mr-button>
+  </ng-container>
+</mr-modal>
+
+<mr-button-icon
+  [icon]="'arrow-left'"
+  (clicked)="handleToBack()"
+  class="admin-users__back"
+></mr-button-icon>

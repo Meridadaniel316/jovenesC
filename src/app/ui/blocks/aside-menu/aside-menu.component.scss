@@ -1,0 +1,590 @@
+@use "../../_styles/index.scss" as styles;
+
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+.sidebar {
+  &__content {
+    position: fixed;
+    height: 100vh;
+    width: 88px;
+    background: #fff;
+    border-right: 5px solid styles.$color-primary-color-15;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
+    z-index: 99;
+    transition: width 0.5s;
+
+    &--network {
+      border-right: 5px solid styles.$color-status-info-dark;
+    }
+
+    &--business {
+      border-right: 5px solid styles.$color-status-error-dark;
+    }
+
+    &--opportunities {
+      border-right: 5px solid styles.$color-status-success-dark;
+    }
+
+    &--training {
+      border-right: 5px solid styles.$color-status-warning-dark;
+    }
+
+    ul li .navegationStyle .links_name,
+    .logout .logoutStyle .links_name {
+      color: #575f66;
+      margin: auto 30px;
+      width: 110px;
+      transform: translateX(-250px);
+      opacity: 0;
+    }
+
+    ul li .tooltip,
+    .logout .tooltip {
+      color: #575f66;
+      background: #fff;
+      width: 110px;
+      padding: 6px 12px;
+      border-radius: 5px;
+      box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+      opacity: 0;
+      position: absolute;
+      left: 0px;
+      z-index: 8;
+      transition: 0.5s;
+    }
+
+    ul li:hover .tooltip,
+    .logout:hover .tooltip {
+      opacity: 1;
+      left: 85px;
+      transition: 0.5s;
+    }
+    .logo {
+      cursor: pointer;
+      display: flex;
+      height: 90px;
+      justify-content: space-between;
+      align-items: center;
+
+      #logo_img {
+        position: absolute;
+        top: 25px;
+        left: 24px;
+        height: 55px;
+      }
+
+      .logo_text {
+        margin-left: 70px;
+        font-size: 20px;
+        background: styles.$color-primary-color-15;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        opacity: 0;
+        transform: translateX(-250px);
+        transition: 0.5s;
+
+        .ti {
+          font-weight: bold;
+          background: styles.$color-primary-color;
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+        }
+      }
+
+      #btn {
+        color: #575f66;
+        margin-right: 20px;
+        font-size: 30px;
+        opacity: 0;
+        transform: translateX(-250px);
+        transition: 0.5s;
+      }
+    }
+
+    .info {
+      position: relative;
+      cursor: pointer;
+      margin-top: 10px;
+      padding: styles.$box-pad-half styles.$box-pad-base;
+      .infoNavigate {
+        .avatar {
+          position: relative;
+          width: 78px;
+          z-index: 10;
+          transition: 0.5s;
+        }
+
+        .table {
+          position: absolute;
+          z-index: 8;
+          top: 30px;
+          width: 70%;
+          left: 15%;
+          height: 0;
+          margin: 0px auto;
+          color: #fff;
+          background: linear-gradient(
+            60deg,
+            styles.$color-primary-color-15,
+            styles.$color-red-color
+          );
+          border-radius: 20px;
+          opacity: 1;
+          transition: 0.5s;
+        }
+        .table_text {
+          margin: 40px 10px 0px;
+          text-align: center;
+          font-size: 0px;
+          line-height: 25px;
+          opacity: 0;
+        }
+      }
+
+      .tooltip {
+        color: #575f66;
+        background: #fff;
+        font-size: 15px;
+        width: 150px;
+        padding: 6px 12px;
+        border-radius: 5px;
+        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+        opacity: 0;
+        position: absolute;
+        left: 0px;
+        top: 0px;
+        z-index: 8;
+        transition: 0.5s;
+      }
+    }
+
+    .info:hover .tooltip {
+      opacity: 1;
+      left: 85px;
+      transition: 0.5s;
+    }
+  }
+}
+
+.open {
+  width: 250px;
+  transition: width 0.5s;
+  .Home_section {
+    left: calc(270px - 20px);
+    transition: all 0.5s ease;
+  }
+  .logo {
+    .logo_text {
+      opacity: 1;
+      transform: translateX(0);
+      transition: 0.5s;
+    }
+
+    #btn {
+      opacity: 1;
+      transform: translateX(0);
+      transition: 0.5s;
+    }
+  }
+  ul li .navegationStyle .links_name,
+  .logout .logoutStyle .links_name {
+    transform: translateX(0);
+    opacity: 1;
+    transition: 0.5s;
+  }
+
+  ul li .tooltip,
+  .logout .tooltip {
+    display: none;
+  }
+  .info {
+    cursor: pointer;
+    .current-user {
+      &__profile {
+        transform: translateX(76px);
+        transition: 0.75s;
+        z-index: 9;
+      }
+      &__text {
+        display: block;
+        position: absolute;
+        top: 70%;
+        left: 9%;
+        background-color: styles.$color-bg-white;
+        padding: 0 3px;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      &__image {
+        width: styles.func-toRem(3.5);
+        height: styles.func-toRem(3.5);
+      }
+    }
+    .infoNavigate {
+      .avatar {
+        transform: translateX(86px);
+        transition: 0.75s;
+      }
+      .table {
+        opacity: 1;
+        height: 150px;
+        transition: 0.5s;
+        .table_text {
+          font-size: 13px;
+          opacity: 1;
+          transition: 0.5s;
+        }
+      }
+    }
+
+    .tooltip {
+      display: none;
+    }
+  }
+}
+ul {
+  border-bottom: solid rgba(0, 0, 0, 0.1) 1px;
+  li {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    margin: 30px 0;
+    .navegationStyle {
+      display: flex;
+      align-items: center;
+      text-decoration: none;
+
+      i {
+        position: relative;
+        color: #575f66;
+        font-size: 25px;
+        margin-left: calc((78px - 25px) / 2);
+        z-index: 10;
+      }
+    }
+    .navegationStyle:hover {
+      i,
+      .links_name {
+        color: styles.$color-primary-color-15;
+        transition: 0.5s;
+      }
+    }
+  }
+}
+
+.logout {
+  cursor: pointer;
+  .logoutStyle {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    i {
+      position: relative;
+      color: #575f66;
+      font-size: 25px;
+      margin-left: calc((78px - 25px) / 2);
+      z-index: 10;
+    }
+  }
+}
+
+.Messages:after {
+  position: absolute;
+  content: "0";
+  color: styles.$color-primary-color-15;
+  font-size: 13px;
+  font-weight: bold;
+  height: 20px;
+  width: 30px;
+  border-radius: 50px;
+  background: #e0e7ff;
+  text-align: center;
+  line-height: 20px;
+  left: 120px;
+}
+.table_text span {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.name {
+  font-weight: bolder;
+}
+
+.country {
+  font-size: 13px;
+}
+
+.logout {
+  position: absolute;
+  bottom: 30px;
+  display: flex;
+  align-items: center;
+
+  a:hover i,
+  a:hover .links_name {
+    color: #4d6fff;
+    transition: 0.5s;
+  }
+}
+
+.current-user {
+  z-index: 9;
+  &__profile {
+    position: relative;
+    transform: translateX(0px);
+    transition: 0.75s;
+  }
+  &__text {
+    display: block;
+    position: absolute;
+    top: 70%;
+    left: 9%;
+    background-color: styles.$color-bg-white;
+    padding: 0 3px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  &__image {
+    width: styles.func-toRem(2.5);
+    height: styles.func-toRem(2.5);
+  }
+
+  &__icon {
+    cursor: pointer;
+    color: styles.$color-bg-white;
+    font-size: styles.$box-pad-onehalf;
+    transition: 0.3s;
+
+    &:hover {
+      color: styles.$color-primary-color-light;
+      transform: scale(1.1);
+    }
+  }
+}
+
+.Home_section {
+  position: relative;
+  height: 7vh;
+  top: 15px;
+  width: 100%;
+  text-align: center;
+  transition: all 0.5s ease;
+  // cursor: pointer;
+
+  .listNavBar {
+    margin: 0px auto;
+    margin-top: 10px;
+
+    .btn {
+      color: #fff;
+      background: styles.$color-primary-color-15;
+      padding: 15px 20px;
+      font-size: 12px;
+      text-decoration: none;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      -webkit-transition-property: all;
+      -webkit-transition-duration: 0.2s;
+      -moz-transition-timing-function: cubic-bezier(100, 50, 21, 6);
+      -moz-transition-property: all;
+      -moz-transition-timing-function: cubic-bezier(100, 50, 21, 6);
+
+      &--network {
+        background: styles.$color-status-info-dark;
+      }
+
+      &--business {
+        background: styles.$color-status-error-dark;
+      }
+
+      &--opportunities {
+        background: styles.$color-status-success-dark;
+      }
+
+      &--training {
+        background: styles.$color-status-warning-dark;
+      }
+    }
+
+    .btn:hover {
+      cursor: pointer;
+      border: none;
+      background: rgba(0, 0, 0, 0.4);
+      background: styles.$color-primary-color-light;
+      padding: 20px 20px;
+      color: #1b1b1b;
+    }
+  }
+}
+
+@media (max-width: styles.$bkp-mobile) {
+  .sidebar {
+    &__content {
+      height: 68px;
+      width: 110%;
+      background: #fff;
+      border-bottom: 5px solid styles.$color-primary-color-15;
+
+      transition: width 0.5s;
+
+      &--network {
+        border-bottom: 5px solid styles.$color-status-info-dark;
+      }
+
+      &--business {
+        border-bottom: 5px solid styles.$color-status-error-dark;
+      }
+
+      &--opportunities {
+        border-bottom: 5px solid styles.$color-status-success-dark;
+      }
+
+      &--training {
+        border-bottom: 5px solid styles.$color-status-warning-dark;
+      }
+
+      .nav_list {
+        display: none;
+      }
+      .logo {
+        cursor: pointer;
+        display: flex;
+        height: 90px;
+        justify-content: space-between;
+        align-items: center;
+
+        #logo_img {
+          position: absolute;
+          top: 5px;
+          left: 88px;
+          height: 55px;
+        }
+
+        .logo_text {
+          margin-left: 390px;
+          margin-bottom: 25px;
+          font-size: 22px;
+          background: styles.$color-primary-color-15;
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          opacity: 100;
+          transform: translateX(-250px);
+          transition: 0.5s;
+
+          .ti {
+            font-weight: bold;
+            background: styles.$color-primary-color;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+          }
+        }
+
+        #btn {
+          color: #575f66;
+          margin-right: 20px;
+          font-size: 30px;
+          opacity: 0;
+          transform: translateX(-250px);
+          transition: 0.5s;
+        }
+      }
+
+      .info {
+        position: relative;
+        display: none;
+      }
+    }
+  }
+
+  .logout {
+    background-color: styles.$color-primary-color-15;
+    cursor: pointer;
+    position: absolute;
+    margin-left: 10px;
+    height: 50px;
+    width: 50px;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+
+    &--network {
+      background-color: styles.$color-status-info-dark;
+    }
+
+    &--business {
+      background-color: styles.$color-status-error-dark;
+    }
+
+    &--opportunities {
+      background-color: styles.$color-status-success-dark;
+    }
+
+    &--training {
+      background-color: styles.$color-status-warning-dark;
+    }
+    transform: translateX(0);
+    transition: 0.5s;
+    .logoutStyle {
+      align-items: center;
+      text-decoration: none;
+      i {
+        position: relative;
+        margin-top: 10px;
+        color: #fff;
+        font-size: 25px;
+        margin-left: 10px;
+      }
+    }
+  }
+
+  .open {
+    height: 100%;
+    width: 100%;
+    transition: width 0.5s;
+    .logo {
+      #logo_img {
+        position: absolute;
+        left: 64px;
+        height: 55px;
+        transform: translateX(0);
+        transition: 0.5s;
+      }
+      .logo_text {
+        opacity: 1;
+        margin-left: 110px;
+        transform: translateX(0);
+        transition: 0.5s;
+      }
+
+      #btn {
+        opacity: 1;
+        transform: translateX(0);
+        transition: 0.5s;
+      }
+    }
+
+    .nav_list {
+      display: flex;
+    }
+
+    ul {
+      width: 100%;
+    }
+
+    ul li .navegationStyle .links_name,
+    .logout .logoutStyle .links_name {
+      transform: translateX(0);
+      opacity: 1;
+      transition: 0.5s;
+    }
+  }
+}

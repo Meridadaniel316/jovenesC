@@ -1,0 +1,518 @@
+<!-- <header class="navbar__container">
+    <nav class="navbar__content navbar__content--{{channel?.type}}">
+      <div class="navbar__branding">
+        <mr-button-burguer 
+          class="navbar__button" 
+          [ngClass]="{ 'navbar__button--active': isOpen }"
+          (clicked)="handleClick($event)"
+        ></mr-button-burguer>
+        <figure class="navbar__logo">
+          <mr-image [image]="'assets/img/logo-blanco.png'" [alt]="'logo'"></mr-image>
+        </figure>
+      </div>
+      <mr-aside-menu 
+        [isVisible]="isOpen"
+        [channels]="channels"
+        [channel]="channel"
+        [currentUser]="currentUser"
+        (clickedLogout)="handleLogout()"
+      ></mr-aside-menu>
+    </nav>
+  </header> -->
+<mr-aside-menu (clickedLogout)="handleLogout()" [currentUser]="currentUser" [channel]="channel" [channels]="channels"></mr-aside-menu>  
+<!-- 
+<div class="sidebar">
+    <div class="logo">
+      <img (click)="onSave()" src="https://github.com/thekietvuong/Responsive-Sidebar/blob/master/img/logo.png?raw=true" alt="logo" id="logo_img">
+      <div class="logo_text">THEKIET</div>
+      <i class='bx bx-menu-alt-right' id="btn" ></i>
+    </div>
+
+    <div class="nav_list">
+        <ul>
+          <li>
+            <a href="#">
+              <i class='bx bx-grid-alt'></i>
+              <span class="links_name">Dashboard</span>
+            </a>
+            <span class="tooltip">Dashboard</span>
+          </li>
+  
+          <li>
+            <a href="#">
+              <i class='bx bx-bar-chart'></i>
+              <span class="links_name">Analytics</span>
+            </a>
+            <span class="tooltip">Analytics</span>
+          </li>
+  
+          <li>
+            <a href="#">
+              <i class='bx bx-chat'></i>
+              <span class="links_name Messages">Messages</span>
+            </a>
+            <span class="tooltip">Messages</span>
+          </li>
+  
+          <li>
+            <a href="#">
+              <i class='bx bx-folder' ></i>
+              <span class="links_name">File Manager</span>
+            </a>
+            <span class="tooltip">Files</span>
+          </li>
+  
+          <li>
+            <a href="#">
+              <i class='bx bx-user' ></i>
+              <span class="links_name">User</span>
+            </a>
+            <span class="tooltip">User</span>
+          </li>
+        </ul>
+  
+        <div class="info">
+          <a href="#">
+            <img src="https://github.com/thekietvuong/Responsive-Sidebar/blob/master/img/avatar.png?raw=true" alt="avatar" class="avatar">
+            <div class="table">
+              <div class="table_text">
+                <span class="name">The Kiet Vuong</span>
+                <span class="country">SaiGon, VN</span>  
+                <p> <span>Daniel Castaño Merida</span> <br> ENVIGADO</p>
+              </div>
+            </div>
+          </a>
+          <div class="tooltip">
+            <span class="name">Daniel Castaño Merida</span>
+            <br>
+            <span class="country">Envigado, Antioquia</span>
+          </div>
+        </div>
+  
+        <div class="logout">
+          <a href="#">
+            <i class='bx bx-log-out' ></i>
+            <span class="links_name">Log out</span>
+          </a>
+          <span class="tooltip">Log out</span>
+        </div>
+      </div>
+</div>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins" , sans-serif;
+}
+
+.sidebar{
+  position: fixed;
+  height: 100vh;
+  width: 88px;
+  background: #fff;
+  border-right: 5px solid #4D6FFF;
+  border-top-right-radius: 15px;
+  border-bottom-right-radius: 15px;
+  z-index: 99;
+  transition: width .5s;
+}
+
+.sidebar.open{
+  width: 250px;
+  transition: width .5s;
+}
+
+.sidebar .logo{
+  display: flex;
+  height: 90px;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sidebar .logo #logo_img{
+  position: absolute;
+  top: 25px;
+  left: 19px;
+  height: 40px;
+}
+
+.sidebar .logo .logo_text{
+  margin-left: 70px;
+  font-size: 20px;
+  font-weight: bold;
+  background: linear-gradient(60deg, #736AFF, #AA6DEB);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  opacity: 0;
+  transform: translateX(-250px);
+  transition: .5s;
+}
+
+.sidebar.open .logo .logo_text{
+  opacity: 1;
+  transform: translateX(0);
+  transition: .5s;
+}
+
+.sidebar .logo #btn{
+  color: #575F66;
+  margin-right: 20px;
+  font-size: 30px;
+  opacity: 0;
+  transform: translateX(-250px);
+  transition: .5s;
+}
+
+.sidebar.open .logo #btn{
+  opacity: 1;
+  transform: translateX(0);
+  transition: .5s;
+}
+
+ul{
+  border-bottom: solid rgba(0, 0, 0, 0.1) 1px;
+}
+
+ul li{
+  display: flex;
+  align-items: center;
+  margin: 30px 0;
+}
+
+ul li a,
+.logout a{
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+  
+}
+
+ul li a i,
+.logout a i{
+  position: relative;
+  color: #575F66;
+  font-size: 25px;
+  margin-left: calc((78px - 25px)/2);
+  z-index: 10;
+}
+
+.sidebar ul li a .links_name,
+.sidebar .logout a .links_name{
+  color: #575F66;
+  margin: auto 30px;
+  width: 110px;
+  transform: translateX(-250px);
+  opacity: 0;
+}
+
+.sidebar.open ul li a .links_name,
+.sidebar.open .logout a .links_name{
+  transform: translateX(0);
+  opacity: 1;
+  transition: .5s;
+}
+
+ul li a:hover i, 
+ul li a:hover .links_name{
+  color: #4D6FFF;
+  transition: .5s;
+}
+
+.sidebar ul li .tooltip,
+.sidebar .logout .tooltip{
+  color: #575F66;
+  background: #fff;
+  width: 110px;
+  padding: 6px 12px;
+  border-radius: 5px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  position: absolute;
+  left: 0px;
+  z-index: 8;
+  transition: .5s;
+}
+
+.sidebar ul li:hover .tooltip,
+.sidebar .logout:hover .tooltip{
+  opacity: 1;
+  left: 85px;
+  transition: .5s;
+}
+
+.sidebar.open ul li .tooltip,
+.sidebar.open .logout .tooltip{
+  display: none;
+}
+
+.Messages:after{
+  position: absolute;
+  content: "3";
+  color: #5471C5;
+  font-size: 13px;
+  font-weight: bold;
+  height: 20px;
+  width: 30px;
+  border-radius: 50px;
+  background: #E0E7FF;
+  text-align: center;
+  line-height: 20px;
+  left: 120px;
+}
+
+.sidebar .info{
+  position: relative;
+  margin-top: 10px;
+}
+
+.sidebar .info a .avatar{
+  position: relative;
+  width: 78px;
+  z-index: 10;
+  transition: .5s;
+}
+
+.sidebar.open .info a .avatar{
+  transform: translateX(86px);
+  transition: .75s;
+}
+
+.sidebar .info a .table{
+  position: absolute;
+  z-index: 8;
+  top: 30px;
+  width: 70%;
+  left: 15%;
+  height: 0;
+  margin: 0px auto;
+  color: #fff;
+  background: linear-gradient(60deg, #4D6FFF, #AA6DEB);
+  border-radius: 20px;
+  opacity: 1;
+  transition: .5s;
+}
+
+.sidebar.open .info a .table{
+  opacity: 1;
+  height: 150px;
+  transition: .5s;
+}
+
+.sidebar .info .tooltip{
+  color: #575F66;
+  background: #fff;
+  font-size: 15px;
+  width: 150px;
+  padding: 6px 12px; 
+  border-radius: 5px;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  z-index: 8;
+  transition: .5s;
+}
+
+.sidebar .info:hover .tooltip{
+  opacity: 1;
+  left: 85px;
+  transition: .5s;
+}
+
+.sidebar.open .info .tooltip{
+  display: none;
+}
+
+.sidebar .info .table_text{
+  margin: 40px 10px 0px;
+  text-align: center;
+  font-size: 0px;
+  line-height: 25px;
+  opacity: 0;
+}
+
+.sidebar.open .info .table_text{
+  font-size: 13px;
+  opacity: 1;
+  transition: .5s;
+}
+
+.table_text span{
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.name{
+  font-weight: bolder;
+}
+
+.country{
+  font-size: 13px;
+}
+
+.logout{
+  position: absolute;
+  bottom: 30px;
+  display: flex;
+  align-items: center;
+}
+
+.logout a:hover i, 
+.logout a:hover .links_name{
+  color: #4D6FFF;
+  transition: .5s;
+}
+</style> -->
+<!-- 
+<script>
+    const sidebar = document.querySelector(".sidebar");
+    const btn = document.querySelector("#btn");
+    logo_img.onclick = function(){
+      if (!x.matches){
+        sidebar.classList.toggle('open');
+      }
+    }
+    btn.onclick = function(){
+      if (!x.matches){
+        sidebar.classList.remove('open');
+      }
+    }
+
+    function myFunction(x) {
+      if (x.matches) { // If media query matches
+        sidebar.classList.remove('open');
+      } 
+    }
+
+    var x = window.matchMedia("(max-width: 700px)")
+    myFunction(x) // Call listener function at run time
+    x.addListener(myFunction) // Attach listener function on state changes
+  </script> -->
+
+<!--   
+<header class="navbar__container">
+    <div class="navigation navigation__content navigation__content--{{channel?.type}}">
+        <ul>
+            <li class="list">
+                <a href="">
+                    <span class="icon"><i class="fas fa-home"></i></span>
+                    <span class="title">Inicio</span>
+                </a>
+            </li>
+            <li class="list">
+                <a href="">
+                    <span class="icon"><i class="fas fa-user"></i></span>
+                    <span class="title">Perfil</span>
+                </a>
+            </li>
+            <li class="list active">
+                <a href="">
+                    <span class="icon"><i class="fas fa-comment-dots"></i></span>
+                    <span class="title">Mensajes</span>
+                </a>
+            </li>
+            <li class="list">
+                <a href="">
+                    <span class="icon"><i class="fas fa-cog"></i></span>
+                    <span class="title">Configuracion</span>
+                </a>
+            </li>
+            <li class="list">
+                <a href="">
+                    <span class="icon"><i class="fas fa-question-circle"></i></span>
+                    <span class="title">Ayuda</span>
+                </a>
+            </li>
+            <li class="list">
+                <a href="">
+                    <span class="icon"><i class="fas fa-shoe-prints"></i></span>
+                    <span class="title">ROFE</span>
+                </a>
+                <div class="active"></div>
+            </li>
+        </ul>
+    </div>
+    <div class="navigation__toggle">
+        <mr-button-burguer
+            *ngIf="!isOpen"
+            class="open"
+            [ngClass]="{ 'navbar__button--active': isOpen }"
+            (clicked)="handleClick($event)"></mr-button-burguer>
+        <i *ngIf="isOpen" class="fas fa-times close"></i>
+    </div>
+</header>
+
+        
+<style>
+    .navigation 
+    {
+
+    }
+  
+    .navigation ul 
+    {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        padding-left: 0px;
+        padding-top: 100px;
+    }
+  
+    .navigation ul li
+    {
+        position: relative;
+        list-style: none;
+        width: 100%;
+    }
+  
+    .navigation ul li.active
+    {
+        background-color: #fff;
+    }
+  
+    .navigation ul li a
+    {
+        position: relative;
+        display: block;
+        width: 100%;
+        display: flex;
+        text-decoration: none;
+        color: #fff;
+    }
+  
+    .navigation ul li.active a
+    {
+        color: #333;
+    }
+  
+    .navigation ul li a .icon
+    {
+        position: relative;
+        display: block;
+        min-width: 60px;
+        height: 60px; 
+        line-height: 60px;
+        text-align: center;
+    }
+  
+    .navigation ul li a .icon i
+    {
+        font-size: 1.5em;
+    }
+  
+    .navigation ul li a .title
+    {
+        position: relative;
+        display: block;
+        padding-left: 10px;
+        height: 60px;
+        line-height: 60px;
+        white-space: normal;
+    }
+
+
+  </style> -->

@@ -1,0 +1,125 @@
+@use './box-model' as box;
+@use './colors' as color;
+@use './animations' as animation;
+@use './fonts' as font;
+@use './break-points' as bkp;
+
+@mixin input($name) {
+  .#{$name} {
+    $self: &;
+    position: relative;
+
+    &__label {
+      background-color: color.$bg-lighter;
+      border-radius: box.$rad-rounded;
+      border: box.$bor-solid color.$bor-light;
+      column-gap: box.$pad-half;
+      padding: box.$pad-quarter box.$pad-base;
+      transition: animation.$ease;
+
+      align-items: center;
+      display: flex;
+      position: relative;
+
+      &#{$self}__label--focus {
+        background-color: color.$primary-color-light;
+        border-color: color.$primary-color;
+      }
+
+      &#{$self}__label--error {
+        background-color: color.$status-error;
+        border-color: color.$status-error-dark;
+      }
+
+      &--disabled {
+        background-color: color.$bg-lighter;
+        border-color: color.$bor-light;
+
+        &#{$self}__label--focus {
+          background-color: color.$bg-lighter;
+          border-color: color.$bor-light;
+        }
+      }
+    }
+
+    &__text {
+      width: calc(100% - #{box.$pad-double});
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    &__input,
+    &__textarea {
+      @include font.small;
+      display: inline-grid;
+      border: none;
+      outline: none;
+      background-color: transparent;
+      color: color.$typo-base;
+    }
+
+    &__icon {
+      color: color.$primary-color;
+      font-size: 0.95rem;
+    }
+
+    &__iconLogin {
+      position: absolute;
+      right: 0.62rem;
+      color: color.$primary-color;
+      font-size: 0.95rem;
+      visibility: hidden;
+      opacity: 0;
+    }
+
+    &__input:valid ~ &__iconLogin{
+      visibility: visible;
+      opacity: 1;
+    }
+  }
+}
+
+@mixin floating($name) {
+  .#{$name} {
+    &__floating {
+      left: box.$pad-none;
+      top: calc(100% + #{box.$pad-half});
+      transition: animation.$ease;
+      position: absolute;
+    }
+  }
+}
+
+@mixin searcheable($name) {
+  .#{$name} {
+    &__searchbox {
+      border-bottom: box.$bor-solid color.$bor-light;
+      padding: box.$pad-none box.$pad-half box.$pad-half;
+    }
+
+    &__search {
+      margin: 0;
+      padding: 0;
+      background-color: color.$bg-lighter;
+      border-radius: box.$rad-rounded;
+      border: box.$bor-solid color.$bor-light;
+      padding: box.$pad-base;
+      width: box.$wth-block;
+      display: block;
+      outline: none;
+    }
+  }
+
+  @media (min-width: bkp.$tablet) {
+    .#{$name} {
+      &__searchbox {
+        padding: box.$pad-half;
+      }
+
+      &__search {
+        padding: box.$pad-half box.$pad-base;
+      }
+    }
+  }
+}

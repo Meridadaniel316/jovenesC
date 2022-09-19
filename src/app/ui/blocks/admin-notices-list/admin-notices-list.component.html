@@ -1,0 +1,121 @@
+<div class="admin-notices-list__header">
+  <mr-button
+    [display]="'inline'"
+    [icon]="'fas fa-plus'"
+    [label]="'Crear'"
+    (clicked)="modalRef.toggle()"
+  ></mr-button>
+  
+  <mr-form-notice-filter 
+    [channelOptions]="channelOptionsAll"
+    (formUpdate)="handleFilterNotices($event)"
+  >
+  </mr-form-notice-filter>
+</div>
+
+<mr-table
+  [headers]="[
+    ['', '0.5rem'],
+    ['Título', '7rem'],
+    ['Descripción', '10rem'],
+    ['Canal', '4rem'],
+    ['Acciones', '3rem']
+  ]"
+  [items]="notices || []"
+  [itemTemplateRef]="noticeTemplate"
+></mr-table>
+
+<ng-template #noticeTemplate let-notice="item" let-index="index">
+  <td class="admin-notices-list-tmpl__td">
+    <figure class="admin-notices-list-tmpl__image">
+      <mr-image
+        [image]="notice?.icon?.url"
+        [rounded]="'circle'"
+        [alt]="'icon-notice'"
+      ></mr-image>
+    </figure>
+  </td>
+  <td class="admin-notices-list-tmpl__td">
+    <mr-text
+      [color]="'initial'"
+      [type]="'line'"
+      [text]="notice?.title"
+      [size]="'base'"
+      [weight]="'regular'"
+    ></mr-text>
+  </td>
+  <td class="admin-notices-list-tmpl__td">
+    <mr-text
+      [color]="'initial'"
+      [type]="'line'"
+      [text]="notice?.description"
+      [size]="'base'"
+      [weight]="'regular'"
+    ></mr-text>
+  </td>
+  <td class="admin-notices-list-tmpl__td">
+    <mr-text
+      [color]="'initial'"
+      [type]="'line'"
+      [text]="notice?.channel | channel"
+      [size]="'base'"
+      [weight]="'regular'"
+    ></mr-text>
+  </td>
+  <td class="admin-notices-list-tmpl__td admin-notices-list-tmpl__td--buttons">
+    <mr-button
+      [display]="'block'"
+      [icon]="'fas fa-pen'"
+      (clicked)="handleLoadNoticeToUpdate(notice.id); modalUpdateRef.toggle()"
+    ></mr-button>
+    <mr-button
+      [display]="'block'"
+      [icon]="'fas fa-trash'"
+      (clicked)="modalDeleteRef.toggle(); setNoticeId(notice.id)"
+    ></mr-button>
+  </td>
+</ng-template>
+
+<mr-modal #modalRef>
+  <ng-container>
+    <mr-form-notice
+      [channelOptions]="channelOptions"
+      [canResetForm]="canCloseModal"
+      [forms]="forms"
+      (dataOutput)="handleCreateNotice($event)"
+    ></mr-form-notice>
+  </ng-container>
+</mr-modal>
+
+<mr-modal #modalUpdateRef>
+  <ng-container>
+    <mr-form-notice
+      [dataInput]="noticeToUpdate"
+      [channelOptions]="channelOptions"
+      [canResetForm]="canCloseModal"
+      [forms]="forms"
+      (dataOutput)="handleUpdateNotice($event)"
+    ></mr-form-notice>
+  </ng-container>
+</mr-modal>
+
+<mr-modal #modalDeleteRef [auto]="true">
+  <ng-container>
+    <mr-text
+      [text]="'¿Estás seguro de que deseas eliminar este comunicado?'"
+      [weight]="'bold'"
+      [size]="'medium'"
+    ></mr-text>
+    <mr-button
+      class="admin-notices-list__button"
+      [label]="'Eliminar'"
+      (clicked)="modalDeleteRef.toggle(); handleDeleteNotice()"
+    ></mr-button>
+  </ng-container>
+</mr-modal>
+
+<mr-button-icon
+  [icon]="'arrow-left'"
+  (clicked)="handleToBack()"
+  class="admin-notices__back"
+></mr-button-icon>

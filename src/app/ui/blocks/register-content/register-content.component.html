@@ -1,0 +1,31 @@
+<div class="register-content">
+  <mr-home-background class="register-content__background"></mr-home-background>
+  <mr-card class="register-content__form">
+    <ng-container>
+      <mr-form-user
+        [showCheckConditions]="true"
+        [cities]="cities"
+        [states]="states"
+        [hobbies]="hobbies"
+        [documents]="documents"
+        [education]="education"
+        [ethnicGroups]="ethnicGroups"
+        [familyCore]="familyCore"
+        [familyIncome]="familyIncome"
+        [housingType]="housingType"
+        [maritalStatus]="maritalStatus"
+        [stratum]="stratum"
+        [sustenting]="sustenting"
+        [disclosures]="disclosures"
+        (dataOutput)="handleCreateUser($event)"
+        (formUpdate)="handleLoadCities($event)"
+      ></mr-form-user>
+    </ng-container>
+  </mr-card>
+
+  <mr-button-icon
+    [icon]="'arrow-left'"
+    (clicked)="handleToBack()"
+    class="register-content__back"
+  ></mr-button-icon>
+</div>
